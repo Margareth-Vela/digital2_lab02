@@ -2697,9 +2697,10 @@ unsigned int a;
   uint8_t display_unidad_s2;
   uint8_t display_decimal_s2;
   uint8_t display_decimal_2_s2;
-  uint8_t display_unidad_s3;
-  uint8_t display_decimal_s3;
-  uint8_t display_decimal_2_s3;
+  uint8_t centenas;
+  uint8_t decenas_temp;
+  uint8_t decenas;
+  uint8_t unidades;
   uint8_t flag;
   uint8_t flag_1;
 
@@ -2729,7 +2730,11 @@ void main(void) {
     display_decimal_s2 = (((POT2 * 100) / 51) - (display_unidad_s2*100))/10;
     display_decimal_2_s2 = (((POT2 * 100) / 51) - (display_unidad_s2*100) - (display_decimal_s2*10));
 
-    display_unidad_s3 = contador ;
+    centenas = contador/100;
+    decenas_temp = contador%100;
+    decenas = decenas_temp/10;
+
+    unidades = contador%10;
 
 
     if (display_decimal > 9){
@@ -2751,7 +2756,7 @@ void main(void) {
     if (display_unidad_s2 > 5){
         display_unidad = 5;
     }
-    if (display_unidad_s3 > 5){
+    if (contador > 5){
         display_unidad = 5;
     }
 
@@ -2773,11 +2778,11 @@ void main(void) {
 
 
     Lcd_Set_Cursor(2,13);
-    Lcd_Write_Char(display_unidad_s3 +48);
+    Lcd_Write_Char(centenas +48);
+    Lcd_Set_Cursor(2,14);
+    Lcd_Write_Char(decenas + 48);
     Lcd_Set_Cursor(2,15);
-    Lcd_Write_Char(display_decimal_s3 + 48);
-    Lcd_Set_Cursor(2,16);
-    Lcd_Write_Char(display_decimal_2_s3 + 48);
+    Lcd_Write_Char(unidades + 48);
    }
 }
 
@@ -2883,10 +2888,10 @@ void LCD_display(){
     Lcd_Write_String("S2");
     Lcd_Set_Cursor(2,7);
     Lcd_Write_String("0.00");
-    Lcd_Set_Cursor(1,14);
+    Lcd_Set_Cursor(1,13);
     Lcd_Write_String("S3");
     Lcd_Set_Cursor(2,13);
-    Lcd_Write_String("0.00");
+    Lcd_Write_String("000");
     return;
 }
 
