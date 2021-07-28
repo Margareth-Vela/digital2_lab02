@@ -1,4 +1,4 @@
-# 1 "Lab02_main.c"
+# 1 "ADC.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,8 +6,13 @@
 # 1 "<built-in>" 2
 # 1 "C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "Lab02_main.c" 2
-# 16 "Lab02_main.c"
+# 1 "ADC.c" 2
+
+
+
+
+
+
 # 1 "C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 1 3
 # 18 "C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -2488,7 +2493,7 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 28 "C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 2 3
-# 16 "Lab02_main.c" 2
+# 7 "ADC.c" 2
 
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 1 3
 # 13 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
@@ -2623,120 +2628,33 @@ typedef int16_t intptr_t;
 
 
 typedef uint16_t uintptr_t;
-# 17 "Lab02_main.c" 2
-# 28 "Lab02_main.c"
-#pragma config FOSC = INTRC_NOCLKOUT
+# 8 "ADC.c" 2
+
+# 1 "./ADC.h" 1
+# 13 "./ADC.h"
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 1 3
+# 13 "./ADC.h" 2
 
 
-#pragma config WDTE = OFF
-
-#pragma config PWRTE = ON
-#pragma config MCLRE = OFF
-
-
-#pragma config CP = OFF
-
-#pragma config CPD = OFF
-
-#pragma config BOREN = OFF
-#pragma config IESO = OFF
-
-#pragma config FCMEN = OFF
-
-#pragma config LVP = ON
-
-
-
-#pragma config BOR4V = BOR40V
-
-#pragma config WRT = OFF
+void ADC(void);
+# 9 "ADC.c" 2
 
 
 
 
 
-uint8_t var_temp;
 
 
-
-
-void setup(void);
-
-
-
-
-void main(void) {
-    return;
-}
-
-
-
-
-void __attribute__((picinterrupt(("")))) isr(void){
-
-    if (INTCONbits.T0IF){
-        PORTD = 0x00;
-        TMR0 = 235;
-        INTCONbits.T0IF = 0;
-    }
-
-    if (PIR1bits.ADIF){
-        var_temp = ADRESH;
-        PIR1bits.ADIF = 0;
-    }
-
-    return;
-}
-
-
-
-
-void setup(void){
-
-
-    OSCCONbits.IRCF2 = 1;
-    OSCCONbits.IRCF1 = 1;
-    OSCCONbits.IRCF0 = 1;
-    OSCCONbits.SCS = 1;
-
-
-    ANSELH = 0x00;
-    ANSEL = 0x03;
-
-    TRISA = 0x03;
-    TRISC = 0x00;
-    TRISD = 0x00;
-    TRISE = 0x00;
-
-    PORTA = 0x00;
-    PORTC = 0x00;
-    PORTD = 0x00;
-    PORTE = 0x00;
-
-
-    ADCON1bits.ADFM = 0;
-    ADCON1bits.VCFG0 = 0;
-    ADCON1bits.VCFG1 = 0;
-
-    ADCON0bits.ADCS = 0b10;
-    ADCON0bits.CHS = 0;
-    _delay((unsigned long)((50)*(8000000/4000000.0)));
-    ADCON0bits.ADON = 1;
-
-
-    INTCONbits.GIE = 1;
-    INTCONbits.T0IE = 1;
-    INTCONbits.T0IF = 0;
-    INTCONbits.PEIE = 1;
-    PIE1bits.ADIE = 1;
-    PIR1bits.ADIF = 0;
-
-
-    OPTION_REGbits.T0CS = 0;
-    OPTION_REGbits.PSA = 0;
-    OPTION_REGbits.PS2 = 1;
-    OPTION_REGbits.PS1 = 1;
-    OPTION_REGbits.PS0 = 1;
-    TMR0 = 236;
+void ADC() {
+        if(ADCON0bits.GO == 0){
+            if(ADCON0bits.CHS == 0){
+                ADCON0bits.CHS = 1;
+            }
+            else{
+                ADCON0bits.CHS = 0;
+            }
+        }
+            _delay((unsigned long)((50)*(8000000/4000000.0)));
+            ADCON0bits.GO = 1;
     return;
 }

@@ -33,6 +33,7 @@ __Lfunctab 0 0 ENTRY 0
 _var_temp 73 0 COMMON 1
 __Hcommon 0 0 ABS 0
 __Lcommon 0 0 ABS 0
+_PIE1bits 8C 0 ABS 0
 __Heeprom_data 0 0 EEDATA 3
 __Leeprom_data 0 0 EEDATA 3
 _PIR1bits C 0 ABS 0
@@ -93,6 +94,8 @@ __Lspace_3 0 0 ABS 0
 __size_of_main 0 0 ABS 0
 __Hspace_4 4010 0 ABS 0
 __Lspace_4 0 0 ABS 0
+_ADCON0bits 1F 0 ABS 0
+_ADCON1bits 9F 0 ABS 0
 __HbssCOMMON 0 0 ABS 0
 __LbssCOMMON 0 0 ABS 0
 __pbssCOMMON 73 0 COMMON 1
@@ -123,13 +126,13 @@ intentry 8 65 CODE 8 0
 cstackCOMMON 70 73 COMMON 70 1
 %locals
 dist/default/production\Lab02_digital2.X.production.o
-C:\Users\vema3\AppData\Local\Temp\sd58.s
-459 F 0 CODE 0
-462 F 0 CODE 0
-473 F 0 CODE 0
-479 10 0 CODE 0
-481 10 0 CODE 0
-482 11 0 CODE 0
+C:\Users\vema3\AppData\Local\Temp\s6hk.s
+621 F 0 CODE 0
+624 F 0 CODE 0
+635 F 0 CODE 0
+641 10 0 CODE 0
+643 10 0 CODE 0
+644 11 0 CODE 0
 Lab02_main.c
 68 30 0 CODE 0
 69 30 0 CODE 0

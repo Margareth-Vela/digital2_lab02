@@ -5,7 +5,7 @@ Linker command line:
 -W-3 --edf=C:\Program Files\Microchip\xc8\v2.31\pic\dat\en_msgs.txt -cn \
   -h+dist/default/production\Lab02_digital2.X.production.sym \
   --cmf=dist/default/production\Lab02_digital2.X.production.cmf -z -Q16F887 \
-  -oC:\Users\vema3\AppData\Local\Temp\sd58.2 --defsym=__MPLAB_BUILD=1 \
+  -oC:\Users\vema3\AppData\Local\Temp\s6hk.2 --defsym=__MPLAB_BUILD=1 \
   -Mdist/default/production/Lab02_digital2.X.production.map -E1 \
   -ver=XC8 Compiler --acfsm=1493 -ASTACK=0110h-016Fh -pstack=STACK \
   -ACODE=00h-07FFhx4 -ASTRCODE=00h-01FFFh -ASTRING=00h-0FFhx32 \
@@ -18,7 +18,7 @@ Linker command line:
   -AEEDATA=00h-0FFh/02100h -peeprom_data=EEDATA -DEEDATA=2 -DCODE=2 \
   -DSTRCODE=2 -DSTRING=2 -DCONST=2 -DENTRY=2 \
   -preset_vec=00h,intentry=04h,init,end_init -ppowerup=CODE -pcinit=CODE \
-  -pfunctab=ENTRY -k C:\Users\vema3\AppData\Local\Temp\sd58.o \
+  -pfunctab=ENTRY -k C:\Users\vema3\AppData\Local\Temp\s6hk.o \
   dist/default/production\Lab02_digital2.X.production.o 
 
 Object code version is 3.11
@@ -28,7 +28,7 @@ Machine type is 16F887
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\vema3\AppData\Local\Temp\sd58.o
+C:\Users\vema3\AppData\Local\Temp\s6hk.o
                 end_init                              C        C        3        8       0
                 reset_vec                             0        0        3        0       0
                 config                             2007     2007        2        0       4
@@ -133,12 +133,15 @@ UNUSED ADDRESS RANGES
 
                                   Symbol Table
 
+_ADCON0bits              (abs)        001F
+_ADCON1bits              (abs)        009F
 _ADRESH                  (abs)        001E
 _ANSEL                   (abs)        0188
 _ANSELH                  (abs)        0189
 _INTCONbits              (abs)        000B
 _OPTION_REGbits          (abs)        0081
 _OSCCONbits              (abs)        008F
+_PIE1bits                (abs)        008C
 _PIR1bits                (abs)        000C
 _PORTA                   (abs)        0005
 _PORTC                   (abs)        0007

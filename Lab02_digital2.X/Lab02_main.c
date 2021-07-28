@@ -19,7 +19,7 @@
 //------------------------------------------------------------------------------
 //                          Directivas del compilador
 //------------------------------------------------------------------------------
-#define _XTAL_FREQ 4000000 //Para delay
+#define _XTAL_FREQ 8000000 //Para delay
 
 //------------------------------------------------------------------------------
 //                          Palabras de configuración
@@ -113,10 +113,23 @@ void setup(void){
     PORTD = 0x00;
     PORTE = 0x00;
     
+    //Configurar ADC
+    ADCON1bits.ADFM = 0; //Justificar a la izquierda
+    ADCON1bits.VCFG0 = 0; //Vss
+    ADCON1bits.VCFG1 = 0; //VDD
+    
+    ADCON0bits.ADCS = 0b10; //ADC oscilador -> Fosc/32
+    ADCON0bits.CHS = 0;     //Comenzar en canal 0
+    __delay_us(50);        
+    ADCON0bits.ADON = 1;    //Habilitar la conversión ADC
+    
    //Configurar la interrupcion
     INTCONbits.GIE = 1;  //Enable interrupciones globales
     INTCONbits.T0IE = 1; //Enable TMR0
-    INTCONbits.T0IF = 0; //Se limpia la bandera de interrupción TMR0  
+    INTCONbits.T0IF = 0; //Se limpia la bandera de interrupción TMR0
+    INTCONbits.PEIE = 1; //Enable interrupciones periféricas
+    PIE1bits.ADIE = 1;   //Enable interrupción ADC
+    PIR1bits.ADIF = 0;   //Se limpia bandera de interrupción ADC
     
     //Configurar TMR0
     OPTION_REGbits.T0CS = 0;
