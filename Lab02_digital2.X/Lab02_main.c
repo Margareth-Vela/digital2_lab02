@@ -4,7 +4,7 @@
  * Autor: Margareth Vela 
  * 
  * Programa: LCD + UART
- * Hardware: Potenciómetros en PORTA, LCD en PORTD, y UART en PORTC
+ * Hardware: Potenciómetros en PORTA, LCD en PORTD, y USART en PORTC
  * 
  * Creado: Julio 27, 2021
  * Última modificación: Julio 28, 2021

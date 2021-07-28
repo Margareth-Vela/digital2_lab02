@@ -37,7 +37,7 @@ strings STRING 0 622 622 18 2
 clrtext CODE 0 690 690 8 2
 bssCOMMON COMMON 1 78 78 3 1
 config CONFIG 4 2007 2007 2 2
-$C:\Users\vema3\AppData\Local\Temp\sfso.o
+$C:\Users\vema3\AppData\Local\Temp\sdj8.o
 reset_vec CODE 0 0 0 3 2
 end_init CODE 0 C C 3 2
 config CONFIG 4 2007 2007 2 2
@@ -87,19 +87,19 @@ STRING 69E-1FFF 2
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production\Lab02_digital2.X.production.o
-F cinit CODE >1047:C:\Users\vema3\AppData\Local\Temp\sfso.s
-F cinit CODE >1050:C:\Users\vema3\AppData\Local\Temp\sfso.s
-F cinit CODE >1130:C:\Users\vema3\AppData\Local\Temp\sfso.s
-10 cinit CODE >1131:C:\Users\vema3\AppData\Local\Temp\sfso.s
-11 cinit CODE >1132:C:\Users\vema3\AppData\Local\Temp\sfso.s
-12 cinit CODE >1135:C:\Users\vema3\AppData\Local\Temp\sfso.s
-13 cinit CODE >1136:C:\Users\vema3\AppData\Local\Temp\sfso.s
-14 cinit CODE >1137:C:\Users\vema3\AppData\Local\Temp\sfso.s
-15 cinit CODE >1138:C:\Users\vema3\AppData\Local\Temp\sfso.s
-16 cinit CODE >1139:C:\Users\vema3\AppData\Local\Temp\sfso.s
-1B cinit CODE >1145:C:\Users\vema3\AppData\Local\Temp\sfso.s
-1B cinit CODE >1147:C:\Users\vema3\AppData\Local\Temp\sfso.s
-1C cinit CODE >1148:C:\Users\vema3\AppData\Local\Temp\sfso.s
+F cinit CODE >1047:C:\Users\vema3\AppData\Local\Temp\sdj8.s
+F cinit CODE >1050:C:\Users\vema3\AppData\Local\Temp\sdj8.s
+F cinit CODE >1130:C:\Users\vema3\AppData\Local\Temp\sdj8.s
+10 cinit CODE >1131:C:\Users\vema3\AppData\Local\Temp\sdj8.s
+11 cinit CODE >1132:C:\Users\vema3\AppData\Local\Temp\sdj8.s
+12 cinit CODE >1135:C:\Users\vema3\AppData\Local\Temp\sdj8.s
+13 cinit CODE >1136:C:\Users\vema3\AppData\Local\Temp\sdj8.s
+14 cinit CODE >1137:C:\Users\vema3\AppData\Local\Temp\sdj8.s
+15 cinit CODE >1138:C:\Users\vema3\AppData\Local\Temp\sdj8.s
+16 cinit CODE >1139:C:\Users\vema3\AppData\Local\Temp\sdj8.s
+1B cinit CODE >1145:C:\Users\vema3\AppData\Local\Temp\sdj8.s
+1B cinit CODE >1147:C:\Users\vema3\AppData\Local\Temp\sdj8.s
+1C cinit CODE >1148:C:\Users\vema3\AppData\Local\Temp\sdj8.s
 4 intentry CODE >168:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab02\Lab02_digital2.X\Lab02_main.c
 2E2 text15 CODE >168:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab02\Lab02_digital2.X\Lab02_main.c
 2E2 text15 CODE >169:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab02\Lab02_digital2.X\Lab02_main.c
@@ -393,16 +393,16 @@ F2 maintext CODE >105:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab02\La
 2C0 maintext CODE >159:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab02\Lab02_digital2.X\Lab02_main.c
 2C9 maintext CODE >160:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab02\Lab02_digital2.X\Lab02_main.c
 2D5 maintext CODE >161:C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab02\Lab02_digital2.X\Lab02_main.c
-690 clrtext CODE >1117:C:\Users\vema3\AppData\Local\Temp\sfso.s
-690 clrtext CODE >1118:C:\Users\vema3\AppData\Local\Temp\sfso.s
-691 clrtext CODE >1119:C:\Users\vema3\AppData\Local\Temp\sfso.s
-691 clrtext CODE >1120:C:\Users\vema3\AppData\Local\Temp\sfso.s
-692 clrtext CODE >1121:C:\Users\vema3\AppData\Local\Temp\sfso.s
-693 clrtext CODE >1122:C:\Users\vema3\AppData\Local\Temp\sfso.s
-694 clrtext CODE >1123:C:\Users\vema3\AppData\Local\Temp\sfso.s
-695 clrtext CODE >1124:C:\Users\vema3\AppData\Local\Temp\sfso.s
-696 clrtext CODE >1125:C:\Users\vema3\AppData\Local\Temp\sfso.s
-697 clrtext CODE >1126:C:\Users\vema3\AppData\Local\Temp\sfso.s
+690 clrtext CODE >1117:C:\Users\vema3\AppData\Local\Temp\sdj8.s
+690 clrtext CODE >1118:C:\Users\vema3\AppData\Local\Temp\sdj8.s
+691 clrtext CODE >1119:C:\Users\vema3\AppData\Local\Temp\sdj8.s
+691 clrtext CODE >1120:C:\Users\vema3\AppData\Local\Temp\sdj8.s
+692 clrtext CODE >1121:C:\Users\vema3\AppData\Local\Temp\sdj8.s
+693 clrtext CODE >1122:C:\Users\vema3\AppData\Local\Temp\sdj8.s
+694 clrtext CODE >1123:C:\Users\vema3\AppData\Local\Temp\sdj8.s
+695 clrtext CODE >1124:C:\Users\vema3\AppData\Local\Temp\sdj8.s
+696 clrtext CODE >1125:C:\Users\vema3\AppData\Local\Temp\sdj8.s
+697 clrtext CODE >1126:C:\Users\vema3\AppData\Local\Temp\sdj8.s
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -434,13 +434,13 @@ _POT2 42 0 BANK0 1 bssBANK0 dist/default/production\Lab02_digital2.X.production.
 _TMR0 1 0 ABS 0 - dist/default/production\Lab02_digital2.X.production.o
 _TXIE 464 0 ABS 0 - dist/default/production\Lab02_digital2.X.production.o
 _TXIF 64 0 ABS 0 - dist/default/production\Lab02_digital2.X.production.o
-___sp 0 0 STACK 2 stack C:\Users\vema3\AppData\Local\Temp\sfso.o
+___sp 0 0 STACK 2 stack C:\Users\vema3\AppData\Local\Temp\sdj8.o
 _cont 40 0 BANK0 1 bssBANK0 dist/default/production\Lab02_digital2.X.production.o
 _flag 79 0 COMMON 1 bssCOMMON dist/default/production\Lab02_digital2.X.production.o
 _main 3E 0 CODE 0 maintext dist/default/production\Lab02_digital2.X.production.o
 btemp 7E 0 ABS 0 - dist/default/production\Lab02_digital2.X.production.o
 _Lcd_Write_Char C74 0 CODE 0 text6 dist/default/production\Lab02_digital2.X.production.o
-start 18 0 CODE 0 init C:\Users\vema3\AppData\Local\Temp\sfso.o
+start 18 0 CODE 0 init C:\Users\vema3\AppData\Local\Temp\sdj8.o
 __size_of___awdiv 0 0 ABS 0 - dist/default/production\Lab02_digital2.X.production.o
 __size_of___awmod 0 0 ABS 0 - dist/default/production\Lab02_digital2.X.production.o
 __size_of_main 0 0 ABS 0 - dist/default/production\Lab02_digital2.X.production.o
@@ -450,12 +450,12 @@ __HbssCOMMON 0 0 ABS 0 bssCOMMON -
 _OPTION_REGbits 81 0 ABS 0 - dist/default/production\Lab02_digital2.X.production.o
 __Hpowerup 0 0 CODE 0 powerup -
 ___awmod@sign 21 0 BANK0 1 cstackBANK0 dist/default/production\Lab02_digital2.X.production.o
-intlevel0 0 0 ENTRY 0 functab C:\Users\vema3\AppData\Local\Temp\sfso.o
-intlevel1 0 0 ENTRY 0 functab C:\Users\vema3\AppData\Local\Temp\sfso.o
-intlevel2 0 0 ENTRY 0 functab C:\Users\vema3\AppData\Local\Temp\sfso.o
-intlevel3 0 0 ENTRY 0 functab C:\Users\vema3\AppData\Local\Temp\sfso.o
-intlevel4 0 0 ENTRY 0 functab C:\Users\vema3\AppData\Local\Temp\sfso.o
-intlevel5 0 0 ENTRY 0 functab C:\Users\vema3\AppData\Local\Temp\sfso.o
+intlevel0 0 0 ENTRY 0 functab C:\Users\vema3\AppData\Local\Temp\sdj8.o
+intlevel1 0 0 ENTRY 0 functab C:\Users\vema3\AppData\Local\Temp\sdj8.o
+intlevel2 0 0 ENTRY 0 functab C:\Users\vema3\AppData\Local\Temp\sdj8.o
+intlevel3 0 0 ENTRY 0 functab C:\Users\vema3\AppData\Local\Temp\sdj8.o
+intlevel4 0 0 ENTRY 0 functab C:\Users\vema3\AppData\Local\Temp\sdj8.o
+intlevel5 0 0 ENTRY 0 functab C:\Users\vema3\AppData\Local\Temp\sdj8.o
 __LbssCOMMON 0 0 ABS 0 bssCOMMON -
 ___bmul@multiplicand 73 0 COMMON 1 cstackCOMMON dist/default/production\Lab02_digital2.X.production.o
 _OSCCONbits 8F 0 ABS 0 - dist/default/production\Lab02_digital2.X.production.o
@@ -482,8 +482,8 @@ ___awdiv@divisor 22 0 BANK0 1 cstackBANK0 dist/default/production\Lab02_digital2
 __end_of___awdiv 926 0 CODE 0 text14 dist/default/production\Lab02_digital2.X.production.o
 __end_of___awmod A96 0 CODE 0 text13 dist/default/production\Lab02_digital2.X.production.o
 _display_decimal_2_s2 3A 0 BANK0 1 bssBANK0 dist/default/production\Lab02_digital2.X.production.o
-___stackhi 0 0 ABS 0 - C:\Users\vema3\AppData\Local\Temp\sfso.o
-___stacklo 0 0 ABS 0 - C:\Users\vema3\AppData\Local\Temp\sfso.o
+___stackhi 0 0 ABS 0 - C:\Users\vema3\AppData\Local\Temp\sdj8.o
+___stacklo 0 0 ABS 0 - C:\Users\vema3\AppData\Local\Temp\sdj8.o
 _BAUDCTLbits 187 0 ABS 0 - dist/default/production\Lab02_digital2.X.production.o
 __size_of_USART 0 0 ABS 0 - dist/default/production\Lab02_digital2.X.production.o
 __size_of_setup 0 0 ABS 0 - dist/default/production\Lab02_digital2.X.production.o
@@ -497,7 +497,7 @@ __pcstackBANK0 20 0 BANK0 1 cstackBANK0 dist/default/production\Lab02_digital2.X
 __size_of_Lcd_Cmd 0 0 ABS 0 - dist/default/production\Lab02_digital2.X.production.o
 _display_unidad 3F 0 BANK0 1 bssBANK0 dist/default/production\Lab02_digital2.X.production.o
 _display_decimal_2 3D 0 BANK0 1 bssBANK0 dist/default/production\Lab02_digital2.X.production.o
-___int_sp 0 0 STACK 2 stack C:\Users\vema3\AppData\Local\Temp\sfso.o
+___int_sp 0 0 STACK 2 stack C:\Users\vema3\AppData\Local\Temp\sdj8.o
 __Hbank0 0 0 ABS 0 bank0 -
 __Hbank1 0 0 ABS 0 bank1 -
 __Hbank2 0 0 ABS 0 bank2 -
@@ -556,7 +556,7 @@ __size_of_Lcd_Write_String 0 0 ABS 0 - dist/default/production\Lab02_digital2.X.
 __stringtab C44 0 STRING 0 strings dist/default/production\Lab02_digital2.X.production.o
 Lcd_Write_String@a 22 0 BANK0 1 cstackBANK0 dist/default/production\Lab02_digital2.X.production.o
 Lcd_Write_String@i 20 0 BANK0 1 cstackBANK0 dist/default/production\Lab02_digital2.X.production.o
-reset_vec 0 0 CODE 0 reset_vec C:\Users\vema3\AppData\Local\Temp\sfso.o
+reset_vec 0 0 CODE 0 reset_vec C:\Users\vema3\AppData\Local\Temp\sdj8.o
 __end_of_Lcd_Cmd C44 0 CODE 0 text8 dist/default/production\Lab02_digital2.X.production.o
 __size_of___bmul 0 0 ABS 0 - dist/default/production\Lab02_digital2.X.production.o
 __size_of___wmul 0 0 ABS 0 - dist/default/production\Lab02_digital2.X.production.o
