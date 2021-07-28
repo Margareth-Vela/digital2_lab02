@@ -2642,16 +2642,23 @@ void Lcd_Set_Cursor(char a, char b);
 void Lcd_Init(void);
 void Lcd_Write_Char(char a);
 void Lcd_Write_String(char *a);
-void Lcd_Shift_Right(void);
-void Lcd_Shift_Left(void);
 # 19 "Lab02_main.c" 2
-# 30 "Lab02_main.c"
+
+# 1 "./USART.h" 1
+# 13 "./USART.h"
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 1 3
+# 13 "./USART.h" 2
+
+
+void USART(void);
+# 20 "Lab02_main.c" 2
+# 31 "Lab02_main.c"
 #pragma config FOSC = INTRC_NOCLKOUT
 
 
 #pragma config WDTE = OFF
 
-#pragma config PWRTE = ON
+#pragma config PWRTE = OFF
 #pragma config MCLRE = OFF
 
 
@@ -2664,7 +2671,7 @@ void Lcd_Shift_Left(void);
 
 #pragma config FCMEN = OFF
 
-#pragma config LVP = ON
+#pragma config LVP = OFF
 
 
 
@@ -2681,27 +2688,26 @@ unsigned int a;
   uint8_t POT2;
   uint8_t var_temp;
 
-  uint8_t flag;
-  uint8_t RC_temp;
-
-  uint8_t contador;
+  uint8_t contador = 0;
   uint8_t cont;
 
   uint8_t display_unidad;
   uint8_t display_decimal;
-  uint8_t display_decima1_2;
+  uint8_t display_decimal_2;
   uint8_t display_unidad_s2;
   uint8_t display_decimal_s2;
   uint8_t display_decimal_2_s2;
   uint8_t display_unidad_s3;
   uint8_t display_decimal_s3;
   uint8_t display_decimal_2_s3;
+  uint8_t flag;
   uint8_t flag_1;
 
 
 
 
 void setup(void);
+void LCD_display(void);
 
 
 
@@ -2709,11 +2715,15 @@ void setup(void);
 void main(void) {
     setup();
     while(1){
+     if(cont > 15){
+            cont = 0;
+            TXIE = 1;
+        }
 
 
     display_unidad = POT1 / 51;
     display_decimal = ((POT1 * 100 / 51) - (display_unidad*100))/10;
-    display_decima1_2 = ((POT1 * 100 / 51) - (display_unidad*100) - (display_decimal*10));
+    display_decimal_2 = ((POT1 * 100 / 51) - (display_unidad*100) - (display_decimal*10));
 
     display_unidad_s2 = POT2 / 51;
     display_decimal_s2 = (((POT2 * 100) / 51) - (display_unidad_s2*100))/10;
@@ -2725,8 +2735,8 @@ void main(void) {
     if (display_decimal > 9){
         display_decimal = 9;
     }
-    if (display_decima1_2 > 9){
-        display_decima1_2 = 9;
+    if (display_decimal_2 > 9){
+        display_decimal_2 = 9;
     }
     if (display_decimal_s2 > 9){
         display_decimal_s2 = 9;
@@ -2751,7 +2761,7 @@ void main(void) {
     Lcd_Set_Cursor(2,3);
     Lcd_Write_Char(display_decimal + 48);
     Lcd_Set_Cursor(2,4);
-    Lcd_Write_Char(display_decima1_2 + 48);
+    Lcd_Write_Char(display_decimal_2 + 48);
 
 
     Lcd_Set_Cursor(2,7);
@@ -2768,26 +2778,29 @@ void main(void) {
     Lcd_Write_Char(display_decimal_s3 + 48);
     Lcd_Set_Cursor(2,16);
     Lcd_Write_Char(display_decimal_2_s3 + 48);
-    return;}
-
+   }
 }
 
 
 
 
 void __attribute__((picinterrupt(("")))) isr(void){
+    if (INTCONbits.T0IF){
+        cont++;
+        INTCONbits.T0IF = 0;
+    }
 
     if(ADIF == 1){
 
 
-        if (flag == 1){
+        if (flag_1 == 1){
             POT1 = ADRESH;
             ADCON0bits.CHS0 = 1;
-            flag = 0;
+            flag_1 = 0;
         } else{
             POT2 = ADRESH;
             ADCON0bits.CHS0 = 0;
-            flag = 1;
+            flag_1 = 1;
         }
 
         ADIF = 0;
@@ -2795,6 +2808,85 @@ void __attribute__((picinterrupt(("")))) isr(void){
         ADCON0bits.GO = 1;
     }
 
+    if(PIR1bits.RCIF == 1){
+
+        RA7 = 1;
+        if (RCREG == 0x0D){
+        RA7 = 0;
+            if (var_temp == 0x2B){
+                contador++;
+                if (contador > 255){
+                    contador = 0;
+                } }
+
+            else if (var_temp == 0x2D){
+                contador--;
+                if (contador > 255){
+                    contador = 0;
+                }
+            }
+        }
+        else {
+        var_temp = RCREG;
+        }
+    }
+
+    if (TXIF == 1){
+        if (flag == 0){
+
+            TXREG = display_unidad + 48;
+            flag = 1;
+        } else if (flag == 1){
+            TXREG = 0x2E;
+            flag = 2;
+        } else if (flag == 2){
+            TXREG = display_decimal + 48;
+            flag = 3;
+        } else if (flag == 3){
+            TXREG = display_decimal_2 + 48;
+            flag = 4;
+        } else if (flag == 4){
+            TXREG = 0x2D;
+            flag = 5;
+        }
+        else if (flag == 5){
+            TXREG = display_unidad_s2 + 48;
+            flag = 6;
+        } else if (flag == 6){
+            TXREG = 0x2E;
+            flag = 7;
+        } else if (flag == 7){
+            TXREG = display_decimal_s2 + 48;
+            flag = 8;
+        } else if (flag == 8){
+            TXREG = display_decimal_2_s2 + 48;
+            flag = 9;
+        } else if (flag == 9){
+            TXREG = 0x0D;
+            flag = 0;
+        }
+    TXIF = 0;
+    }
+}
+
+
+
+
+
+void LCD_display(){
+
+    Lcd_Set_Cursor(1,3);
+    Lcd_Write_String("S1");
+    Lcd_Set_Cursor(2,1);
+    Lcd_Write_String("0.00");
+    Lcd_Set_Cursor(1,8);
+    Lcd_Write_String("S2");
+    Lcd_Set_Cursor(2,7);
+    Lcd_Write_String("0.00");
+    Lcd_Set_Cursor(1,14);
+    Lcd_Write_String("S3");
+    Lcd_Set_Cursor(2,13);
+    Lcd_Write_String("0.00");
     return;
 }
 
@@ -2814,7 +2906,7 @@ void setup(void){
     ANSEL = 0x03;
 
     TRISA = 0x03;
-    TRISC = 0x00;
+    TRISC = 0x80;
     TRISD = 0x00;
     TRISE = 0x00;
 
@@ -2824,14 +2916,7 @@ void setup(void){
     PORTE = 0x00;
 
 
-    ADCON1bits.ADFM = 0;
-    ADCON1bits.VCFG0 = 0;
-    ADCON1bits.VCFG1 = 0;
-
-    ADCON0bits.ADCS = 0b10;
-    ADCON0bits.CHS = 0;
-    _delay((unsigned long)((50)*(8000000/4000000.0)));
-    ADCON0bits.ADON = 1;
+    ADC();
 
 
     INTCONbits.GIE = 1;
@@ -2843,5 +2928,18 @@ void setup(void){
 
 
     Lcd_Init();
-    return;
+
+
+    USART();
+
+
+    LCD_display();
+
+
+    OPTION_REGbits.T0CS = 0;
+    OPTION_REGbits.PSA = 0;
+    OPTION_REGbits.PS2 = 1;
+    OPTION_REGbits.PS1 = 1;
+    OPTION_REGbits.PS0 = 1;
+    TMR0 = 10;
 }

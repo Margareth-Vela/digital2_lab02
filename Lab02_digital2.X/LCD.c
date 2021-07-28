@@ -71,13 +71,3 @@ void Lcd_Write_String(char *a)
 	   Lcd_Write_Char(a[i]);
 }
 
-void Lcd_Shift_Right()
-{
-	Lcd_Cmd(0x1C);
-}
-
-void Lcd_Shift_Left()
-{
-	Lcd_Cmd(0x18);
-}
-

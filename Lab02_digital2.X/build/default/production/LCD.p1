@@ -470,33 +470,3 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;LCD.c: 72: }
 [e :UE 146 ]
 }
-"74
-[; ;LCD.c: 74: void Lcd_Shift_Right()
-[v _Lcd_Shift_Right `(v ~T0 @X0 1 ef ]
-"75
-[; ;LCD.c: 75: {
-{
-[e :U _Lcd_Shift_Right ]
-[f ]
-"76
-[; ;LCD.c: 76:  Lcd_Cmd(0x1C);
-[e ( _Lcd_Cmd (1 -> -> 28 `i `uc ]
-"77
-[; ;LCD.c: 77: }
-[e :UE 151 ]
-}
-"79
-[; ;LCD.c: 79: void Lcd_Shift_Left()
-[v _Lcd_Shift_Left `(v ~T0 @X0 1 ef ]
-"80
-[; ;LCD.c: 80: {
-{
-[e :U _Lcd_Shift_Left ]
-[f ]
-"81
-[; ;LCD.c: 81:  Lcd_Cmd(0x18);
-[e ( _Lcd_Cmd (1 -> -> 24 `i `uc ]
-"82
-[; ;LCD.c: 82: }
-[e :UE 152 ]
-}

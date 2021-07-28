@@ -14,16 +14,16 @@
 #define _XTAL_FREQ 8000000 //Para delay
 
 void ADC() {
-        if(ADCON0bits.GO == 0){ //Si la conversión ya está terminada
-            if(ADCON0bits.CHS == 0){
-                ADCON0bits.CHS = 1;  //pasa al segundo canal  
-            }
-            else{
-                ADCON0bits.CHS = 0;  //pasa al primer canal 
-            }
-        }
-            __delay_us(50); //Delay para el capacitor sample/hold
-            ADCON0bits.GO = 1; //Se vuelve a ejecutar la conversión ADC              
+        //Configurar ADC
+        ADCON1bits.ADFM = 0; //Justificar a la izquierda
+        ADCON1bits.VCFG0 = 0; //Vss
+        ADCON1bits.VCFG1 = 0; //VDD
+
+        ADCON0bits.ADCS = 0b10; //ADC oscilador -> Fosc/32
+        ADCON0bits.CHS = 0;     //Comenzar en canal 0       
+        ADCON0bits.ADON = 1;    //Habilitar la conversión ADC
+        __delay_us(50); 
+        ADCON0bits.GO = 1;
     return;
 }
 

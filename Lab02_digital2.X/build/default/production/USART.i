@@ -1,4 +1,4 @@
-# 1 "ADC.c"
+# 1 "USART.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,7 +6,7 @@
 # 1 "<built-in>" 2
 # 1 "C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "ADC.c" 2
+# 1 "USART.c" 2
 
 
 
@@ -2493,7 +2493,7 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 28 "C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 2 3
-# 7 "ADC.c" 2
+# 7 "USART.c" 2
 
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 1 3
 # 13 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
@@ -2628,33 +2628,32 @@ typedef int16_t intptr_t;
 
 
 typedef uint16_t uintptr_t;
-# 8 "ADC.c" 2
+# 8 "USART.c" 2
 
-# 1 "./ADC.h" 1
-# 13 "./ADC.h"
+# 1 "./USART.h" 1
+# 13 "./USART.h"
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 1 3
-# 13 "./ADC.h" 2
+# 13 "./USART.h" 2
 
 
-void ADC(void);
-# 9 "ADC.c" 2
+void USART(void);
+# 9 "USART.c" 2
 
 
+void USART() {
 
+    TXSTAbits.SYNC = 0;
+    TXSTAbits.BRGH = 1;
 
+    BAUDCTLbits.BRG16 = 1;
 
+    SPBRG = 207;
+    SPBRGH = 0;
 
+    RCSTAbits.SPEN = 1;
+    RCSTAbits.RX9 = 0;
+    RCSTAbits.CREN = 1;
 
-void ADC() {
-
-        ADCON1bits.ADFM = 0;
-        ADCON1bits.VCFG0 = 0;
-        ADCON1bits.VCFG1 = 0;
-
-        ADCON0bits.ADCS = 0b10;
-        ADCON0bits.CHS = 0;
-        ADCON0bits.ADON = 1;
-        _delay((unsigned long)((50)*(8000000/4000000.0)));
-        ADCON0bits.GO = 1;
+    TXSTAbits.TXEN = 1;
     return;
 }

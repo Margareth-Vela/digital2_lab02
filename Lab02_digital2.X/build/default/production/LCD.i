@@ -2503,8 +2503,6 @@ void Lcd_Set_Cursor(char a, char b);
 void Lcd_Init(void);
 void Lcd_Write_Char(char a);
 void Lcd_Write_String(char *a);
-void Lcd_Shift_Right(void);
-void Lcd_Shift_Left(void);
 # 8 "LCD.c" 2
 
 
@@ -2570,14 +2568,4 @@ void Lcd_Write_String(char *a)
  int i;
  for(i=0;a[i]!='\0';i++)
     Lcd_Write_Char(a[i]);
-}
-
-void Lcd_Shift_Right()
-{
- Lcd_Cmd(0x1C);
-}
-
-void Lcd_Shift_Left()
-{
- Lcd_Cmd(0x18);
 }
