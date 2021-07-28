@@ -1,5 +1,5 @@
 /* 
- * Archivo:   Lab01_main.c
+ * Archivo:   Lab02_main.c
  * Dispositivo: PIC16F887
  * Autor: Margareth Vela 
  */
@@ -18,7 +18,7 @@ void USART() {
     SPBRG = 207;
     SPBRGH = 0;
     
-    RCSTAbits.SPEN = 1;//configuraciones USART y tasa de baudios
+    RCSTAbits.SPEN = 1;//Configuración del USART y Baud Rate
     RCSTAbits.RX9 = 0;
     RCSTAbits.CREN = 1;
     

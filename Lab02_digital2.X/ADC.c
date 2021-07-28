@@ -1,5 +1,5 @@
 /* 
- * Archivo:   Lab01_main.c
+ * Archivo:   Lab02_main.c
  * Dispositivo: PIC16F887
  * Autor: Margareth Vela 
  */

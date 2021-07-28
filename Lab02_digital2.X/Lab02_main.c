@@ -58,26 +58,26 @@
 //------------------------------------------------------------------------------
 //                          Variables
 //------------------------------------------------------------------------------
-unsigned int a;
-  uint8_t POT1;
+unsigned int a; //Para LCD
+  uint8_t POT1; //Para ADC
   uint8_t POT2;
-  uint8_t var_temp;
+  uint8_t var_temp; //Variable que recibe los datos del USART
   
-  uint8_t contador = 0;
-  uint8_t cont;
+  uint8_t contador = 0; //Contador de la LCD
+  uint8_t cont; //Contador TMR0
   
-  uint8_t display_unidad;
-  uint8_t display_decimal;
+  uint8_t display_unidad; //Para desplegar el valor de los potenciómetros con
+  uint8_t display_decimal;//dos decimales
   uint8_t display_decimal_2;
   uint8_t display_unidad_s2;
   uint8_t display_decimal_s2;
   uint8_t display_decimal_2_s2;
-  uint8_t centenas;
+  uint8_t centenas; //Para desplegar el valor del contador 
   uint8_t decenas_temp;
   uint8_t decenas;
   uint8_t unidades;
-  uint8_t flag;
-  uint8_t flag_1;
+  uint8_t flag; //Bandera para saber que dato enviar por el USART
+  uint8_t flag_1; //Bandera para el ADC
 
 //------------------------------------------------------------------------------
 //                          Prototipos
@@ -89,11 +89,11 @@ void LCD_display(void); //Subrutina para la LCD
 //                          Código Principal
 //------------------------------------------------------------------------------
 void main(void) {
-    setup();
+    setup(); //Configuración
     while(1){     
-     if(cont > 15){
-            cont = 0;
-            TXIE = 1;
+     if(cont > 15){ //Se reinicia el contador después de 45ms y se enciende
+            cont = 0; //el enable para enviar datos via USART
+            TXIE = 1; 
         }
      
     //Conversiones para el display del LCD para los 3 sensores
@@ -104,7 +104,8 @@ void main(void) {
     display_unidad_s2 = POT2 / 51;
     display_decimal_s2 = (((POT2 * 100) / 51) - (display_unidad_s2*100))/10;
     display_decimal_2_s2 = (((POT2 * 100) / 51) - (display_unidad_s2*100) - (display_decimal_s2*10));
-      
+    
+    //Para obtener el valor del contador para el display
     centenas = contador/100; //Se divide por 100 para obtener las centenas
     decenas_temp = contador%100;//El residuo se almacena en la variable temporal de decenas
     decenas = decenas_temp/10;//Se divide en 10 el valor de decenas_temp para 
@@ -137,8 +138,8 @@ void main(void) {
     
     // Display para Sensor 1
     Lcd_Set_Cursor(2,1);
-    Lcd_Write_Char(display_unidad +48);
-    Lcd_Set_Cursor(2,3);
+    Lcd_Write_Char(display_unidad +48);//Se suman 48 ya que tiene que comenzar 
+    Lcd_Set_Cursor(2,3);               //en el caracter ascii de 0
     Lcd_Write_Char(display_decimal + 48);
     Lcd_Set_Cursor(2,4);
     Lcd_Write_Char(display_decimal_2 + 48);
@@ -167,85 +168,82 @@ void main(void) {
 void __interrupt() isr(void){
     if (INTCONbits.T0IF){           // INTERRUPCION TMR0
         cont++;
-        INTCONbits.T0IF = 0;        // TERMINAR INTERRUPCION DE TMR0
+        INTCONbits.T0IF = 0;        // Limpiar la bandera de interrupción TMR0
     }
     
     if(ADIF == 1){
-        // bandera para cambiar de canal
-        // hacer 1 canal por interrupcion
-        if (flag_1 == 1){
-            POT1 = ADRESH;
-            ADCON0bits.CHS0 = 1;
+        if (flag_1 == 1){ 
+            POT1 = ADRESH; //Se almacena el valor del primer potenciómetro
+            ADCON0bits.CHS0 = 1;//Cambiar de canal
             flag_1 = 0;
         } else{
-            POT2 = ADRESH;
-            ADCON0bits.CHS0 = 0;
+            POT2 = ADRESH; //Se almacena el valor del segundo potenciómetro
+            ADCON0bits.CHS0 = 0;//Cambiar de canal
             flag_1 = 1;
         }
         
-        ADIF = 0;
+        ADIF = 0; //Limpiar la bandera de ADC
         __delay_us(60);
-        ADCON0bits.GO = 1;
+        ADCON0bits.GO = 1; //Inicia la conversión de ADC
     }  
     
-    if(PIR1bits.RCIF == 1){
+    if(PIR1bits.RCIF == 1){ //Empieza a recibir datos del USART
  
         RA7 = 1;//bandera
         if (RCREG ==  0x0D){
         RA7 = 0;
             if (var_temp == 0x2B){
-                contador++;
+                contador++; //El contador aumenta de valor
                 if (contador > 255){
                     contador = 0;
                 } }
             
             else if (var_temp == 0x2D){
-                contador--;              
+                contador--; //El contador disminuye de valor             
                 if (contador > 255){
                     contador = 0;
                 }
             }
         } 
         else {
-        var_temp = RCREG;
-        }
+        var_temp = RCREG; //Si no se envía el caracter + o -, no realiza 
+        }                 //alguna acción
     }
     
     if (TXIF == 1){
-        if (flag == 0){
-            // enviar chars de los 2 adc, usar banderas para enviar 1 por 1
-            TXREG = display_unidad + 48;
+        if (flag == 0){//Envía los datos al USART de los dos potenciómetros
+            TXREG = display_unidad + 48; //Envía las unidades del POT1
             flag = 1;
         } else if (flag == 1){
             TXREG = 0x2E;
             flag = 2;
         } else if (flag == 2){
-            TXREG = display_decimal + 48;
+            TXREG = display_decimal + 48; //Envía el primer decimal del POT1
             flag = 3;
         } else if (flag == 3){
-            TXREG = display_decimal_2 + 48;
+            TXREG = display_decimal_2 + 48; //Envía el segundo decimal del POT1
             flag = 4;
         } else if (flag == 4){
             TXREG = 0x2D;
             flag = 5;
         }
         else if (flag == 5){
-            TXREG = display_unidad_s2 + 48;
+            TXREG = display_unidad_s2 + 48;//Envía las unidades del POT2
             flag = 6;
         } else if (flag == 6){
             TXREG = 0x2E;
             flag = 7;
         } else if (flag == 7){
-            TXREG = display_decimal_s2 + 48;
+            TXREG = display_decimal_s2 + 48; //Envía el primer decimal del POT2
             flag = 8;
         } else if (flag == 8){
-            TXREG = display_decimal_2_s2 + 48;
+            TXREG = display_decimal_2_s2 + 48; //Envía el segundo decimal del POT2
             flag = 9;
         } else if (flag == 9){
             TXREG = 0x0D;
             flag = 0;
         }       
-    TXIF = 0; 
+    TXIF = 0; //Se limpia la bandera
     }   
 }
 
@@ -254,7 +252,7 @@ void __interrupt() isr(void){
 //------------------------------------------------------------------------------
 
 void LCD_display(){
-    //mostrar en pantalla LCD
+    //Muestra los valores iniciales de la pantalla LCD
     Lcd_Set_Cursor(1,3);
     Lcd_Write_String("S1");
     Lcd_Set_Cursor(2,1);

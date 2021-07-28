@@ -2730,6 +2730,7 @@ void main(void) {
     display_decimal_s2 = (((POT2 * 100) / 51) - (display_unidad_s2*100))/10;
     display_decimal_2_s2 = (((POT2 * 100) / 51) - (display_unidad_s2*100) - (display_decimal_s2*10));
 
+
     centenas = contador/100;
     decenas_temp = contador%100;
     decenas = decenas_temp/10;
@@ -2796,8 +2797,6 @@ void __attribute__((picinterrupt(("")))) isr(void){
     }
 
     if(ADIF == 1){
-
-
         if (flag_1 == 1){
             POT1 = ADRESH;
             ADCON0bits.CHS0 = 1;
@@ -2838,7 +2837,6 @@ void __attribute__((picinterrupt(("")))) isr(void){
 
     if (TXIF == 1){
         if (flag == 0){
-
             TXREG = display_unidad + 48;
             flag = 1;
         } else if (flag == 1){

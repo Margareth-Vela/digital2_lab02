@@ -2506,6 +2506,9 @@ void Lcd_Write_String(char *a);
 # 8 "LCD.c" 2
 
 
+
+
+
 void Lcd_Port(char a)
 {
  PORTD = a;
