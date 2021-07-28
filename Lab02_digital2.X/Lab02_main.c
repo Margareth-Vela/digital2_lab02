@@ -15,6 +15,8 @@
 //------------------------------------------------------------------------------    
  #include <xc.h>
  #include <stdint.h>
+ #include "ADC.h"
+ #include "LCD.h"
 
 //------------------------------------------------------------------------------
 //                          Directivas del compilador
@@ -66,6 +68,7 @@ void setup(void);  //Configuración
 //                          Código Principal
 //------------------------------------------------------------------------------
 void main(void) {
+    setup();
     return;
 }
 
@@ -131,6 +134,9 @@ void setup(void){
     PIE1bits.ADIE = 1;   //Enable interrupción ADC
     PIR1bits.ADIF = 0;   //Se limpia bandera de interrupción ADC
     
+    // Inicializar LCD
+    Lcd_Init();
+        
     //Configurar TMR0
     OPTION_REGbits.T0CS = 0;
     OPTION_REGbits.PSA = 0;

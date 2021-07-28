@@ -11,10 +11,20 @@
 [v ___eecpymem __eecpymem `(v  1 e 1 0 ]
 "39
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
-"68 C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab02\Lab02_digital2.X\Lab02_main.c
+"70 C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab02\Lab02_digital2.X\Lab02_main.c
 [v _main main `(v  1 e 1 0 ]
-"75
+"78
 [v _isr isr `II(v  1 e 1 0 ]
+"97
+[v _setup setup `(v  1 e 1 0 ]
+"10 C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab02\Lab02_digital2.X\LCD.c
+[v _Lcd_Port Lcd_Port `(v  1 e 1 0 ]
+"15
+[v _Lcd_Cmd Lcd_Cmd `(v  1 e 1 0 ]
+"40
+[v _Lcd_Init Lcd_Init `(v  1 e 1 0 ]
+"58
+[v _Lcd_Write_Char Lcd_Write_Char `(v  1 e 1 0 ]
 "59 C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [v _TMR0 TMR0 `VEuc  1 e 1 @1 ]
 "166
@@ -25,7 +35,7 @@
 [v _PORTD PORTD `VEuc  1 e 1 @8 ]
 "414
 [v _PORTE PORTE `VEuc  1 e 1 @9 ]
-[s S22 . 1 `uc 1 RBIF 1 0 :1:0 
+[s S26 . 1 `uc 1 RBIF 1 0 :1:0 
 `uc 1 INTF 1 0 :1:1 
 `uc 1 T0IF 1 0 :1:2 
 `uc 1 RBIE 1 0 :1:3 
@@ -35,14 +45,14 @@
 `uc 1 GIE 1 0 :1:7 
 ]
 "482
-[s S31 . 1 `uc 1 . 1 0 :2:0 
+[s S35 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 TMR0IF 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 TMR0IE 1 0 :1:5 
 ]
-[u S36 . 1 `S22 1 . 1 0 `S31 1 . 1 0 ]
-[v _INTCONbits INTCONbits `VES36  1 e 1 @11 ]
-[s S56 . 1 `uc 1 TMR1IF 1 0 :1:0 
+[u S40 . 1 `S26 1 . 1 0 `S35 1 . 1 0 ]
+[v _INTCONbits INTCONbits `VES40  1 e 1 @11 ]
+[s S60 . 1 `uc 1 TMR1IF 1 0 :1:0 
 `uc 1 TMR2IF 1 0 :1:1 
 `uc 1 CCP1IF 1 0 :1:2 
 `uc 1 SSPIF 1 0 :1:3 
@@ -51,17 +61,17 @@
 `uc 1 ADIF 1 0 :1:6 
 ]
 "553
-[u S64 . 1 `S56 1 . 1 0 ]
-[v _PIR1bits PIR1bits `VES64  1 e 1 @12 ]
+[u S68 . 1 `S60 1 . 1 0 ]
+[v _PIR1bits PIR1bits `VES68  1 e 1 @12 ]
 "1238
 [v _ADRESH ADRESH `VEuc  1 e 1 @30 ]
-[s S126 . 1 `uc 1 ADON 1 0 :1:0 
+[s S130 . 1 `uc 1 ADON 1 0 :1:0 
 `uc 1 GO_nDONE 1 0 :1:1 
 `uc 1 CHS 1 0 :4:2 
 `uc 1 ADCS 1 0 :2:6 
 ]
 "1276
-[s S131 . 1 `uc 1 . 1 0 :1:0 
+[s S135 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 GO 1 0 :1:1 
 `uc 1 CHS0 1 0 :1:2 
 `uc 1 CHS1 1 0 :1:3 
@@ -70,15 +80,15 @@
 `uc 1 ADCS0 1 0 :1:6 
 `uc 1 ADCS1 1 0 :1:7 
 ]
-[s S140 . 1 `uc 1 . 1 0 :1:0 
+[s S144 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 nDONE 1 0 :1:1 
 ]
-[s S143 . 1 `uc 1 . 1 0 :1:0 
+[s S147 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 GO_DONE 1 0 :1:1 
 ]
-[u S146 . 1 `S126 1 . 1 0 `S131 1 . 1 0 `S140 1 . 1 0 `S143 1 . 1 0 ]
-[v _ADCON0bits ADCON0bits `VES146  1 e 1 @31 ]
-[s S197 . 1 `uc 1 PS 1 0 :3:0 
+[u S150 . 1 `S130 1 . 1 0 `S135 1 . 1 0 `S144 1 . 1 0 `S147 1 . 1 0 ]
+[v _ADCON0bits ADCON0bits `VES150  1 e 1 @31 ]
+[s S205 . 1 `uc 1 PS 1 0 :3:0 
 `uc 1 PSA 1 0 :1:3 
 `uc 1 T0SE 1 0 :1:4 
 `uc 1 T0CS 1 0 :1:5 
@@ -86,12 +96,12 @@
 `uc 1 nRBPU 1 0 :1:7 
 ]
 "1366
-[s S204 . 1 `uc 1 PS0 1 0 :1:0 
+[s S212 . 1 `uc 1 PS0 1 0 :1:0 
 `uc 1 PS1 1 0 :1:1 
 `uc 1 PS2 1 0 :1:2 
 ]
-[u S208 . 1 `S197 1 . 1 0 `S204 1 . 1 0 ]
-[v _OPTION_REGbits OPTION_REGbits `VES208  1 e 1 @129 ]
+[u S216 . 1 `S205 1 . 1 0 `S212 1 . 1 0 ]
+[v _OPTION_REGbits OPTION_REGbits `VES216  1 e 1 @129 ]
 "1416
 [v _TRISA TRISA `VEuc  1 e 1 @133 ]
 "1540
@@ -100,7 +110,7 @@
 [v _TRISD TRISD `VEuc  1 e 1 @136 ]
 "1664
 [v _TRISE TRISE `VEuc  1 e 1 @137 ]
-[s S178 . 1 `uc 1 TMR1IE 1 0 :1:0 
+[s S182 . 1 `uc 1 TMR1IE 1 0 :1:0 
 `uc 1 TMR2IE 1 0 :1:1 
 `uc 1 CCP1IE 1 0 :1:2 
 `uc 1 SSPIE 1 0 :1:3 
@@ -109,44 +119,76 @@
 `uc 1 ADIE 1 0 :1:6 
 ]
 "1718
-[u S186 . 1 `S178 1 . 1 0 ]
-[v _PIE1bits PIE1bits `VES186  1 e 1 @140 ]
-[s S76 . 1 `uc 1 SCS 1 0 :1:0 
+[u S190 . 1 `S182 1 . 1 0 ]
+[v _PIE1bits PIE1bits `VES190  1 e 1 @140 ]
+[s S80 . 1 `uc 1 SCS 1 0 :1:0 
 `uc 1 LTS 1 0 :1:1 
 `uc 1 HTS 1 0 :1:2 
 `uc 1 OSTS 1 0 :1:3 
 `uc 1 IRCF 1 0 :3:4 
 ]
 "1882
-[s S82 . 1 `uc 1 . 1 0 :4:0 
+[s S86 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 IRCF0 1 0 :1:4 
 `uc 1 IRCF1 1 0 :1:5 
 `uc 1 IRCF2 1 0 :1:6 
 ]
-[u S87 . 1 `S76 1 . 1 0 `S82 1 . 1 0 ]
-[v _OSCCONbits OSCCONbits `VES87  1 e 1 @143 ]
-[s S111 . 1 `uc 1 . 1 0 :4:0 
+[u S91 . 1 `S80 1 . 1 0 `S86 1 . 1 0 ]
+[v _OSCCONbits OSCCONbits `VES91  1 e 1 @143 ]
+[s S115 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 VCFG0 1 0 :1:4 
 `uc 1 VCFG1 1 0 :1:5 
 `uc 1 . 1 0 :1:6 
 `uc 1 ADFM 1 0 :1:7 
 ]
 "2991
-[u S117 . 1 `S111 1 . 1 0 ]
-[v _ADCON1bits ADCON1bits `VES117  1 e 1 @159 ]
+[u S121 . 1 `S115 1 . 1 0 ]
+[v _ADCON1bits ADCON1bits `VES121  1 e 1 @159 ]
 "3387
 [v _ANSEL ANSEL `VEuc  1 e 1 @392 ]
 "3449
 [v _ANSELH ANSELH `VEuc  1 e 1 @393 ]
-"58 C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab02\Lab02_digital2.X\Lab02_main.c
+"4205
+[v _RE0 RE0 `VEb  1 e 0 @72 ]
+"4208
+[v _RE1 RE1 `VEb  1 e 0 @73 ]
+"60 C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab02\Lab02_digital2.X\Lab02_main.c
 [v _var_temp var_temp `uc  1 e 1 0 ]
-"68
+"70
 [v _main main `(v  1 e 1 0 ]
 {
-"70
+"73
 } 0
-"75
+"97
+[v _setup setup `(v  1 e 1 0 ]
+{
+"148
+} 0
+"40 C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab02\Lab02_digital2.X\LCD.c
+[v _Lcd_Init Lcd_Init `(v  1 e 1 0 ]
+{
+"56
+} 0
+"15
+[v _Lcd_Cmd Lcd_Cmd `(v  1 e 1 0 ]
+{
+[v Lcd_Cmd@a a `uc  1 a 1 wreg ]
+[v Lcd_Cmd@a a `uc  1 a 1 wreg ]
+"17
+[v Lcd_Cmd@a a `uc  1 a 1 6 ]
+"23
+} 0
+"10
+[v _Lcd_Port Lcd_Port `(v  1 e 1 0 ]
+{
+[v Lcd_Port@a a `uc  1 a 1 wreg ]
+[v Lcd_Port@a a `uc  1 a 1 wreg ]
+"12
+[v Lcd_Port@a a `uc  1 a 1 3 ]
+"13
+} 0
+"78 C:\Users\vema3\OneDrive\Documents\GitHub\digital2_lab02\Lab02_digital2.X\Lab02_main.c
 [v _isr isr `II(v  1 e 1 0 ]
 {
-"89
+"92
 } 0

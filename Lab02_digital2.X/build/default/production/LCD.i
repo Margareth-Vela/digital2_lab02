@@ -1,4 +1,4 @@
-# 1 "Lab02_main.c"
+# 1 "LCD.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,8 +6,13 @@
 # 1 "<built-in>" 2
 # 1 "C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "Lab02_main.c" 2
-# 16 "Lab02_main.c"
+# 1 "LCD.c" 2
+
+
+
+
+
+
 # 1 "C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 1 3
 # 18 "C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -2488,151 +2493,7 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 28 "C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 2 3
-# 16 "Lab02_main.c" 2
-
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 1 3
-# 13 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
-typedef signed char int8_t;
-
-
-
-
-
-
-typedef signed int int16_t;
-
-
-
-
-
-
-
-typedef __int24 int24_t;
-
-
-
-
-
-
-
-typedef signed long int int32_t;
-# 52 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
-typedef unsigned char uint8_t;
-
-
-
-
-
-typedef unsigned int uint16_t;
-
-
-
-
-
-
-typedef __uint24 uint24_t;
-
-
-
-
-
-
-typedef unsigned long int uint32_t;
-# 88 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
-typedef signed char int_least8_t;
-
-
-
-
-
-
-
-typedef signed int int_least16_t;
-# 109 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
-typedef __int24 int_least24_t;
-# 118 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
-typedef signed long int int_least32_t;
-# 136 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
-typedef unsigned char uint_least8_t;
-
-
-
-
-
-
-typedef unsigned int uint_least16_t;
-# 154 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
-typedef __uint24 uint_least24_t;
-
-
-
-
-
-
-
-typedef unsigned long int uint_least32_t;
-# 181 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
-typedef signed char int_fast8_t;
-
-
-
-
-
-
-typedef signed int int_fast16_t;
-# 200 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
-typedef __int24 int_fast24_t;
-
-
-
-
-
-
-
-typedef signed long int int_fast32_t;
-# 224 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
-typedef unsigned char uint_fast8_t;
-
-
-
-
-
-typedef unsigned int uint_fast16_t;
-# 240 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
-typedef __uint24 uint_fast24_t;
-
-
-
-
-
-
-typedef unsigned long int uint_fast32_t;
-# 268 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
-typedef int32_t intmax_t;
-# 282 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
-typedef uint32_t uintmax_t;
-
-
-
-
-
-
-typedef int16_t intptr_t;
-
-
-
-
-typedef uint16_t uintptr_t;
-# 17 "Lab02_main.c" 2
-
-# 1 "./ADC.h" 1
-# 13 "./ADC.h"
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 1 3
-# 13 "./ADC.h" 2
-
-
-void ADC(void);
-# 18 "Lab02_main.c" 2
+# 7 "LCD.c" 2
 
 # 1 "./LCD.h" 1
 # 27 "./LCD.h"
@@ -2644,124 +2505,79 @@ void Lcd_Write_Char(char a);
 void Lcd_Write_String(char *a);
 void Lcd_Shift_Right(void);
 void Lcd_Shift_Left(void);
-# 19 "Lab02_main.c" 2
-# 30 "Lab02_main.c"
-#pragma config FOSC = INTRC_NOCLKOUT
+# 8 "LCD.c" 2
 
 
-#pragma config WDTE = OFF
-
-#pragma config PWRTE = ON
-#pragma config MCLRE = OFF
-
-
-#pragma config CP = OFF
-
-#pragma config CPD = OFF
-
-#pragma config BOREN = OFF
-#pragma config IESO = OFF
-
-#pragma config FCMEN = OFF
-
-#pragma config LVP = ON
-
-
-
-#pragma config BOR4V = BOR40V
-
-#pragma config WRT = OFF
-
-
-
-
-
-uint8_t var_temp;
-
-
-
-
-void setup(void);
-
-
-
-
-void main(void) {
-    setup();
-    return;
+void Lcd_Port(char a)
+{
+ PORTD = a;
 }
 
+void Lcd_Cmd(char a)
+{
+ RE0 = 0;
+ Lcd_Port(a);
+ RE1 = 1;
 
-
-
-void __attribute__((picinterrupt(("")))) isr(void){
-
-    if (INTCONbits.T0IF){
-        PORTD = 0x00;
-        TMR0 = 235;
-        INTCONbits.T0IF = 0;
-    }
-
-    if (PIR1bits.ADIF){
-        var_temp = ADRESH;
-        PIR1bits.ADIF = 0;
-    }
-
-    return;
+    _delay((unsigned long)((10)*(8000000/4000.0)));
+    RE1 = 0;
 }
 
+void Lcd_Set_Cursor(char a, char b)
+{
+ char temp,z,y;
+ if(a == 1)
+ {
+   temp = 0x80 + b - 1;
+  Lcd_Cmd(temp);
+ }
+ else if(a == 2)
+ {
+  temp = 0xC0 + b - 1;
+  Lcd_Cmd(temp);
+ }
+}
 
+void Lcd_Init(){
+   _delay((unsigned long)((15)*(8000000/4000.0)));
+  Lcd_Port(0x00);
+   _delay((unsigned long)((20)*(8000000/4000.0)));
+  Lcd_Cmd(0x030);
+ _delay((unsigned long)((5)*(8000000/4000.0)));
+  Lcd_Cmd(0x030);
+ _delay((unsigned long)((160)*(8000000/4000000.0)));
+  Lcd_Cmd(0x030);
 
+  Lcd_Cmd(0x038);
+  Lcd_Cmd(0x010);
+  Lcd_Cmd(0x001);
+  Lcd_Cmd(0x006);
 
-void setup(void){
+  Lcd_Cmd(0x0C);
+}
 
+void Lcd_Write_Char(char a)
+{
+    RE0 = 1;
+   Lcd_Port(a);
+   RE1 = 1;
+   _delay((unsigned long)((40)*(8000000/4000000.0)));
+   RE1 = 0;
+}
 
-    OSCCONbits.IRCF2 = 1;
-    OSCCONbits.IRCF1 = 1;
-    OSCCONbits.IRCF0 = 1;
-    OSCCONbits.SCS = 1;
+void Lcd_Write_String(char *a)
+{
+ int i;
+ for(i=0;a[i]!='\0';i++)
+    Lcd_Write_Char(a[i]);
+}
 
+void Lcd_Shift_Right()
+{
+ Lcd_Cmd(0x1C);
+}
 
-    ANSELH = 0x00;
-    ANSEL = 0x03;
-
-    TRISA = 0x03;
-    TRISC = 0x00;
-    TRISD = 0x00;
-    TRISE = 0x00;
-
-    PORTA = 0x00;
-    PORTC = 0x00;
-    PORTD = 0x00;
-    PORTE = 0x00;
-
-
-    ADCON1bits.ADFM = 0;
-    ADCON1bits.VCFG0 = 0;
-    ADCON1bits.VCFG1 = 0;
-
-    ADCON0bits.ADCS = 0b10;
-    ADCON0bits.CHS = 0;
-    _delay((unsigned long)((50)*(8000000/4000000.0)));
-    ADCON0bits.ADON = 1;
-
-
-    INTCONbits.GIE = 1;
-    INTCONbits.T0IE = 1;
-    INTCONbits.T0IF = 0;
-    INTCONbits.PEIE = 1;
-    PIE1bits.ADIE = 1;
-    PIR1bits.ADIF = 0;
-
-
-    Lcd_Init();
-
-
-    OPTION_REGbits.T0CS = 0;
-    OPTION_REGbits.PSA = 0;
-    OPTION_REGbits.PS2 = 1;
-    OPTION_REGbits.PS1 = 1;
-    OPTION_REGbits.PS0 = 1;
-    TMR0 = 236;
-    return;
+void Lcd_Shift_Left()
+{
+ Lcd_Cmd(0x18);
 }
