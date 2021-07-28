@@ -57,7 +57,27 @@
 //------------------------------------------------------------------------------
 //                          Variables
 //------------------------------------------------------------------------------
-uint8_t var_temp; 
+unsigned int a;
+  uint8_t POT1;
+  uint8_t POT2;
+  uint8_t var_temp;
+  
+  uint8_t flag;
+  uint8_t RC_temp;
+  
+  uint8_t contador;
+  uint8_t cont;
+  
+  uint8_t display_unidad;
+  uint8_t display_decimal;
+  uint8_t display_decima1_2;
+  uint8_t display_unidad_s2;
+  uint8_t display_decimal_s2;
+  uint8_t display_decimal_2_s2;
+  uint8_t display_unidad_s3;
+  uint8_t display_decimal_s3;
+  uint8_t display_decimal_2_s3;
+  uint8_t flag_1;
 
 //------------------------------------------------------------------------------
 //                          Prototipos
@@ -69,7 +89,68 @@ void setup(void);  //Configuración
 //------------------------------------------------------------------------------
 void main(void) {
     setup();
-    return;
+    while(1){
+        
+    //Conversiones para el display del LCD para los 3 sensores
+    display_unidad = POT1 / 51;
+    display_decimal = ((POT1 * 100 / 51) - (display_unidad*100))/10;
+    display_decima1_2 = ((POT1 * 100 / 51) - (display_unidad*100) - (display_decimal*10));  
+    
+    display_unidad_s2 = POT2 / 51;
+    display_decimal_s2 = (((POT2 * 100) / 51) - (display_unidad_s2*100))/10;
+    display_decimal_2_s2 = (((POT2 * 100) / 51) - (display_unidad_s2*100) - (display_decimal_s2*10));
+      
+    display_unidad_s3 = contador ;
+    
+    //Aproximación para los decimales del sensor 1 y 2
+    if (display_decimal > 9){
+        display_decimal = 9;
+    }
+    if (display_decima1_2 > 9){
+        display_decima1_2 = 9;
+    }
+    if (display_decimal_s2 > 9){
+        display_decimal_s2 = 9;
+    }
+    if (display_decimal_2_s2 > 9){
+        display_decimal_2_s2 = 9;
+    }
+    
+    if (display_unidad > 5){
+        display_unidad = 5;
+    }
+    if (display_unidad_s2 > 5){
+        display_unidad = 5;
+    }
+    if (display_unidad_s3 > 5){
+        display_unidad = 5;
+    }
+    
+    // Display para Sensor 1
+    Lcd_Set_Cursor(2,1);
+    Lcd_Write_Char(display_unidad +48);
+    Lcd_Set_Cursor(2,3);
+    Lcd_Write_Char(display_decimal + 48);
+    Lcd_Set_Cursor(2,4);
+    Lcd_Write_Char(display_decima1_2 + 48);
+    
+    //Display para Sensor 2
+    Lcd_Set_Cursor(2,7);
+    Lcd_Write_Char(display_unidad_s2 +48);
+    Lcd_Set_Cursor(2,9);
+    Lcd_Write_Char(display_decimal_s2 + 48);
+    Lcd_Set_Cursor(2,10);
+    Lcd_Write_Char(display_decimal_2_s2 + 48);
+     
+    //Display para Sensor 3
+    Lcd_Set_Cursor(2,13);
+    Lcd_Write_Char(display_unidad_s3 +48);
+    Lcd_Set_Cursor(2,15);
+    Lcd_Write_Char(display_decimal_s3 + 48);
+    Lcd_Set_Cursor(2,16);
+    Lcd_Write_Char(display_decimal_2_s3 + 48);
+    return;}
+    
 }
 
 //------------------------------------------------------------------------------
@@ -77,17 +158,24 @@ void main(void) {
 //------------------------------------------------------------------------------
 void __interrupt() isr(void){
 
-    if (INTCONbits.T0IF){ //Int TMR0
-        PORTD = 0x00;     
-        TMR0 = 235; //Se reinicia el TMR0
-        INTCONbits.T0IF = 0; //Se limpia la bandera
-    }
-
-    if (PIR1bits.ADIF){
-        var_temp = ADRESH; //Se obtiene el valor del ADC
-        PIR1bits.ADIF = 0; //Se limpia la bandera de ADC
-    }
-    
+    if(ADIF == 1){
+        // bandera para cambiar de canal
+        // hacer 1 canal por interrupcion
+        if (flag == 1){
+            POT1 = ADRESH;
+            ADCON0bits.CHS0 = 1;
+            flag = 0;
+        } else{
+            POT2 = ADRESH;
+            ADCON0bits.CHS0 = 0;
+            flag = 1;
+        }
+        
+        ADIF = 0;
+        __delay_us(60);
+        ADCON0bits.GO = 1;
+    } 
+       
     return;
 }
 
@@ -136,13 +224,5 @@ void setup(void){
     
     // Inicializar LCD
     Lcd_Init();
-        
-    //Configurar TMR0
-    OPTION_REGbits.T0CS = 0;
-    OPTION_REGbits.PSA = 0;
-    OPTION_REGbits.PS2 = 1; //Prescaler 1:256
-    OPTION_REGbits.PS1 = 1;
-    OPTION_REGbits.PS0 = 1;
-    TMR0 = 236;  //Se reinicia el TMR0
     return;
 }

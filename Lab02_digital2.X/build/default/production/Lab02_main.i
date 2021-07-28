@@ -2676,7 +2676,27 @@ void Lcd_Shift_Left(void);
 
 
 
-uint8_t var_temp;
+unsigned int a;
+  uint8_t POT1;
+  uint8_t POT2;
+  uint8_t var_temp;
+
+  uint8_t flag;
+  uint8_t RC_temp;
+
+  uint8_t contador;
+  uint8_t cont;
+
+  uint8_t display_unidad;
+  uint8_t display_decimal;
+  uint8_t display_decima1_2;
+  uint8_t display_unidad_s2;
+  uint8_t display_decimal_s2;
+  uint8_t display_decimal_2_s2;
+  uint8_t display_unidad_s3;
+  uint8_t display_decimal_s3;
+  uint8_t display_decimal_2_s3;
+  uint8_t flag_1;
 
 
 
@@ -2688,7 +2708,68 @@ void setup(void);
 
 void main(void) {
     setup();
-    return;
+    while(1){
+
+
+    display_unidad = POT1 / 51;
+    display_decimal = ((POT1 * 100 / 51) - (display_unidad*100))/10;
+    display_decima1_2 = ((POT1 * 100 / 51) - (display_unidad*100) - (display_decimal*10));
+
+    display_unidad_s2 = POT2 / 51;
+    display_decimal_s2 = (((POT2 * 100) / 51) - (display_unidad_s2*100))/10;
+    display_decimal_2_s2 = (((POT2 * 100) / 51) - (display_unidad_s2*100) - (display_decimal_s2*10));
+
+    display_unidad_s3 = contador ;
+
+
+    if (display_decimal > 9){
+        display_decimal = 9;
+    }
+    if (display_decima1_2 > 9){
+        display_decima1_2 = 9;
+    }
+    if (display_decimal_s2 > 9){
+        display_decimal_s2 = 9;
+    }
+    if (display_decimal_2_s2 > 9){
+        display_decimal_2_s2 = 9;
+    }
+
+    if (display_unidad > 5){
+        display_unidad = 5;
+    }
+    if (display_unidad_s2 > 5){
+        display_unidad = 5;
+    }
+    if (display_unidad_s3 > 5){
+        display_unidad = 5;
+    }
+
+
+    Lcd_Set_Cursor(2,1);
+    Lcd_Write_Char(display_unidad +48);
+    Lcd_Set_Cursor(2,3);
+    Lcd_Write_Char(display_decimal + 48);
+    Lcd_Set_Cursor(2,4);
+    Lcd_Write_Char(display_decima1_2 + 48);
+
+
+    Lcd_Set_Cursor(2,7);
+    Lcd_Write_Char(display_unidad_s2 +48);
+    Lcd_Set_Cursor(2,9);
+    Lcd_Write_Char(display_decimal_s2 + 48);
+    Lcd_Set_Cursor(2,10);
+    Lcd_Write_Char(display_decimal_2_s2 + 48);
+
+
+    Lcd_Set_Cursor(2,13);
+    Lcd_Write_Char(display_unidad_s3 +48);
+    Lcd_Set_Cursor(2,15);
+    Lcd_Write_Char(display_decimal_s3 + 48);
+    Lcd_Set_Cursor(2,16);
+    Lcd_Write_Char(display_decimal_2_s3 + 48);
+    return;}
+
 }
 
 
@@ -2696,15 +2777,22 @@ void main(void) {
 
 void __attribute__((picinterrupt(("")))) isr(void){
 
-    if (INTCONbits.T0IF){
-        PORTD = 0x00;
-        TMR0 = 235;
-        INTCONbits.T0IF = 0;
-    }
+    if(ADIF == 1){
 
-    if (PIR1bits.ADIF){
-        var_temp = ADRESH;
-        PIR1bits.ADIF = 0;
+
+        if (flag == 1){
+            POT1 = ADRESH;
+            ADCON0bits.CHS0 = 1;
+            flag = 0;
+        } else{
+            POT2 = ADRESH;
+            ADCON0bits.CHS0 = 0;
+            flag = 1;
+        }
+
+        ADIF = 0;
+        _delay((unsigned long)((60)*(8000000/4000000.0)));
+        ADCON0bits.GO = 1;
     }
 
     return;
@@ -2755,13 +2843,5 @@ void setup(void){
 
 
     Lcd_Init();
-
-
-    OPTION_REGbits.T0CS = 0;
-    OPTION_REGbits.PSA = 0;
-    OPTION_REGbits.PS2 = 1;
-    OPTION_REGbits.PS1 = 1;
-    OPTION_REGbits.PS0 = 1;
-    TMR0 = 236;
     return;
 }
